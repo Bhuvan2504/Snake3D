@@ -66,6 +66,6 @@ public class MultiplayerController : PlayerManager
     [PunRPC]
     void UpdateScore(int actornumber, int value)
     {
-        multiplayerManager.playerScore[actornumber %2].text = "P"+actornumber+": "+ value.ToString();
+        multiplayerManager.playerScore[actornumber %2].text = "P"+actornumber+":"+ value.ToString();
     }
 }

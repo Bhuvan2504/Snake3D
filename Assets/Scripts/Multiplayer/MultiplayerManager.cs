@@ -41,6 +41,9 @@ public class MultiplayerManager : MonoBehaviourPunCallbacks
     }
     void OnSceneLoaded(Scene arg0, LoadSceneMode arg1)
     {
+        if (arg0.name != "game[multi]")
+            return;
+
         int i = PhotonNetwork.IsMasterClient? 0 : 1;
         GameObject g = PhotonNetwork.Instantiate("Multiplayer/Player", playerSpawn[i].position, playerSpawn[i].rotation);
         photonView.RPC("Attendance", RpcTarget.AllBuffered);
@@ -76,8 +79,10 @@ public class MultiplayerManager : MonoBehaviourPunCallbacks
     {
         isGameStart = false;
         isTimerStart= false;
-        int P1Score = int.Parse(playerScore[0].text.Split(':').Last());
-        int P2Score = int.Parse(playerScore[1].text.Split(':').Last());
+
+        PhotonNetwork.DestroyAll();
+        int P1Score = int.Parse(playerScore[1].text.Split(':').Last());
+        int P2Score = int.Parse(playerScore[0].text.Split(':').Last());
 
         if (P1Score > P2Score)
             timerText.text = "P1 Wins\nReturning To MainMenu...";
@@ -95,7 +100,7 @@ public class MultiplayerManager : MonoBehaviourPunCallbacks
 
     void ToMainMenu()
     {
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(0,LoadSceneMode.Single);
     }
 
     [PunRPC]
