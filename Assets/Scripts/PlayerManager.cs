@@ -5,9 +5,9 @@ using UnityEngine;
 public class PlayerManager : MonoBehaviourPunCallbacks
 {
     float SnakeMoveSpeed = 5;
-    float SnakeTurnSpeed = 90;
+    float SnakeTurnSpeed = 30;
     float TailFollowSpeed = 5;
-    public int TailSpawnGap = 5;
+    int TailSpawnGap = 5;
     Touch touch;
     protected void SnakeHeadMovement()
     {
