@@ -110,7 +110,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 562d0505f4edab34bb922a891a788a6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerManager: {fileID: -8801100508485063850}
+  SnakeTurnSpeed: 150
   SnakeTailPrefab: {fileID: 4591672843916412935, guid: 96a45e02c9e09fc47a5903454ec8c35f, type: 3}
 --- !u!54 &9127265526640743911
 Rigidbody:
@@ -140,4 +140,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16ca1a9fc2249e247b126510ed022762, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TailSpawnGap: 5
+  SnakeTurnSpeed: 30

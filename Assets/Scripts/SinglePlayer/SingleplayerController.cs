@@ -5,6 +5,7 @@ public class SingleplayerController : PlayerManager
 {
     SingleplayerManager singleplayerManager;
 
+    GameObject TailParent;
     public GameObject SnakeTailPrefab;
 
     List<GameObject> SnakeTail = new List<GameObject>();
@@ -14,7 +15,9 @@ public class SingleplayerController : PlayerManager
 
     private void Start()
     {
-        singleplayerManager = SingleplayerManager.Instance;   
+        singleplayerManager = SingleplayerManager.Instance;
+        TailParent = new GameObject();
+
     }
     void Update()
     {
@@ -26,8 +29,10 @@ public class SingleplayerController : PlayerManager
     }
     private void AddSnake()
     {
-        GameObject body = Instantiate(SnakeTailPrefab);
-        body.tag = "Player";
+        GameObject body = Instantiate(SnakeTailPrefab, (transform.position-transform.forward * 3),Quaternion.identity);
+        if(SnakeTail.Count > 2)
+            body.tag = "Tail";
+        body.transform.parent = TailParent.transform;
         SnakeTail.Add(body);
     }
 
@@ -43,7 +48,7 @@ public class SingleplayerController : PlayerManager
             singleplayerManager.ScoreTxt.text = "Score: " + score.ToString();
         }
 
-        if (other.gameObject.tag == "Wall" || other.gameObject.tag == "Player")
+        if (other.gameObject.tag == "Wall" || other.gameObject.tag == "Tail")
         {
             singleplayerManager.ScoreTxt.text = "Game Over" + "\n Final Score: " + score;
             singleplayerManager.isGameStarted= false;

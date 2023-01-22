@@ -167,7 +167,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f65fbece14f8b9b4091d87ad24390a67, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TailSpawnGap: 5
+  SnakeTurnSpeed: 150
   SnakeTailPrefab: {fileID: 4591672843916412935, guid: 132167ccb4c5c734e8bdca9aaad6d206, type: 3}
   myScoreText: {fileID: 0}
 --- !u!114 &6761469255663100058
@@ -182,4 +182,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16ca1a9fc2249e247b126510ed022762, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TailSpawnGap: 5
+  SnakeTurnSpeed: 150

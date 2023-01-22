@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerManager : MonoBehaviourPunCallbacks
 {
     float SnakeMoveSpeed = 5;
-    float SnakeTurnSpeed = 30;
+    public float SnakeTurnSpeed = 150;
     float TailFollowSpeed = 5;
     int TailSpawnGap = 5;
     Touch touch;
@@ -18,7 +18,7 @@ public class PlayerManager : MonoBehaviourPunCallbacks
             touch = Input.GetTouch(0);
             if (touch.phase == TouchPhase.Moved)
             {
-                transform.Rotate(Vector3.up * touch.deltaPosition.x * SnakeTurnSpeed * Time.deltaTime);
+                transform.Rotate(Vector3.up * touch.deltaPosition.x * SnakeTurnSpeed / 10 * Time.deltaTime);
             }
         }
         float snakeDirection = Input.GetAxis("Horizontal");

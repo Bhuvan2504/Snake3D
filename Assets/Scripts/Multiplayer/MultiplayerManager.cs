@@ -91,12 +91,11 @@ public class MultiplayerManager : MonoBehaviourPunCallbacks
 
         if (P1Score > P2Score)
             timerText.text = "P1 Wins";
-        else if(P2Score < P1Score)
+        else if(P1Score < P2Score)
             timerText.text = "P2 Wins";
         else if(P1Score == P2Score)
             timerText.text = "Draw";
 
-        MainMenuButton.gameObject.SetActive(true);
     }
 
     public void SpawnFoodRPC()
