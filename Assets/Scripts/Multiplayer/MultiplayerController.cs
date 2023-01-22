@@ -60,6 +60,9 @@ public class MultiplayerController : PlayerManager
             multiplayerManager.SpawnFoodRPC();
 
         }
+
+        if (other.gameObject.tag == "Wall")
+            multiplayerManager.isGameOver = true;
     }
 
 

@@ -1,19 +1,25 @@
 using Photon.Pun;
+using Photon.Realtime;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+
 public class MultiplayerManager : MonoBehaviourPunCallbacks
 {
     #region GameLogicVariables
     public static MultiplayerManager Instance;
     public GameObject FoodPrefab;
     public Vector3 foodSpawnArea;
+    public Button MainMenuButton;
+    [HideInInspector]
     public bool isGameStart = false;
     bool isTimerStart = false;
-    bool isGameOver = false;
+    [HideInInspector]
+    public bool isGameOver = false;
     #endregion
 
     public List<Transform> playerSpawn = new List<Transform>();
@@ -80,16 +86,17 @@ public class MultiplayerManager : MonoBehaviourPunCallbacks
         isGameStart = false;
         isTimerStart= false;
 
-        PhotonNetwork.DestroyAll();
         int P1Score = int.Parse(playerScore[1].text.Split(':').Last());
         int P2Score = int.Parse(playerScore[0].text.Split(':').Last());
 
         if (P1Score > P2Score)
-            timerText.text = "P1 Wins\nReturning To MainMenu...";
-        else
-            timerText.text = "P2 Wins\nReturning To MainMenu...";
+            timerText.text = "P1 Wins";
+        else if(P2Score < P1Score)
+            timerText.text = "P2 Wins";
+        else if(P1Score == P2Score)
+            timerText.text = "Draw";
 
-        Invoke("ToMainMenu", 3);
+        MainMenuButton.gameObject.SetActive(true);
     }
 
     public void SpawnFoodRPC()
@@ -98,9 +105,15 @@ public class MultiplayerManager : MonoBehaviourPunCallbacks
             photonView.RPC("SpawnFood", RpcTarget.All, new Vector3(Random.Range(-foodSpawnArea.x / 2, foodSpawnArea.x / 2), 1f, Random.Range(-foodSpawnArea.z / 2, foodSpawnArea.z / 2)));
     }
 
-    void ToMainMenu()
+    public void ToMainMenu()
     {
-        SceneManager.LoadScene(0,LoadSceneMode.Single);
+        PhotonNetwork.Disconnect();
+    }
+
+    public override void OnDisconnected(DisconnectCause cause)
+    {
+        base.OnDisconnected(cause);
+        SceneManager.LoadScene(0);
     }
 
     [PunRPC]

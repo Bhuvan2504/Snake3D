@@ -14,8 +14,6 @@ public class LobbyManager : MonoBehaviourPunCallbacks
 
     void Start()
     {
-        PhotonNetwork.Disconnect();
-
         PhotonNetwork.ConnectUsingSettings();
         PhotonNetwork.AutomaticallySyncScene = true;
     }

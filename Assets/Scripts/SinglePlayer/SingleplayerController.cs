@@ -27,6 +27,7 @@ public class SingleplayerController : PlayerManager
     private void AddSnake()
     {
         GameObject body = Instantiate(SnakeTailPrefab);
+        body.tag = "Player";
         SnakeTail.Add(body);
     }
 
