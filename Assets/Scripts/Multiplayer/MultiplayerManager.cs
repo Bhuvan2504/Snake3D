@@ -80,17 +80,22 @@ public class MultiplayerManager : MonoBehaviourPunCallbacks
         int P2Score = int.Parse(playerScore[1].text.Split(':').Last());
 
         if (P1Score > P2Score)
-            timerText.text = "P1 Wins";
+            timerText.text = "P1 Wins\nReturning To MainMenu...";
         else
-            timerText.text = "P2 Wins";
+            timerText.text = "P2 Wins\nReturning To MainMenu...";
 
-
+        Invoke("ToMainMenu", 3);
     }
 
     public void SpawnFoodRPC()
     {
         if (PhotonNetwork.IsMasterClient)
             photonView.RPC("SpawnFood", RpcTarget.All, new Vector3(Random.Range(-foodSpawnArea.x / 2, foodSpawnArea.x / 2), 1f, Random.Range(-foodSpawnArea.z / 2, foodSpawnArea.z / 2)));
+    }
+
+    void ToMainMenu()
+    {
+        SceneManager.LoadScene(0);
     }
 
     [PunRPC]
