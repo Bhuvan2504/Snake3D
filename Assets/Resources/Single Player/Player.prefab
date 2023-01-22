@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 4591672843916412932}
   - component: {fileID: 661876590}
   - component: {fileID: 9127265526640743911}
+  - component: {fileID: -8801100508485063850}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -109,7 +110,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 562d0505f4edab34bb922a891a788a6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TailSpawnGap: 5
+  playerManager: {fileID: -8801100508485063850}
   SnakeTailPrefab: {fileID: 4591672843916412935, guid: 96a45e02c9e09fc47a5903454ec8c35f, type: 3}
 --- !u!54 &9127265526640743911
 Rigidbody:
@@ -127,3 +128,16 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 3
+--- !u!114 &-8801100508485063850
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4591672843916412935}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16ca1a9fc2249e247b126510ed022762, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TailSpawnGap: 5

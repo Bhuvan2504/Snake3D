@@ -6,11 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class SingleplayerController : MonoBehaviourPunCallbacks
 {
-    float SnakeMoveSpeed = 5;
-    float SnakeTurnSpeed = 180;
-    float TailFollowSpeed = 5;
-    public int TailSpawnGap = 5;
-
+    public PlayerManager playerManager;
     public GameObject SnakeTailPrefab;
     int score;
     private List<GameObject> SnakeTail = new List<GameObject>();
@@ -25,43 +21,9 @@ public class SingleplayerController : MonoBehaviourPunCallbacks
         if (!singleplayerManager.isGameStarted)
             return;
 
-        SnakeHeadMovement();
-        UpdateSnakePosition();
+        playerManager.SnakeHeadMovement();
+        playerManager.UpdateSnakePosition(SnakeTailPosition, SnakeTail);
     }
-    Touch touch;
-    void SnakeHeadMovement()
-    {
-        transform.position += transform.forward * SnakeMoveSpeed * Time.deltaTime;
-
-        if (Input.touchCount > 0)
-        {
-            touch = Input.GetTouch(0);
-            if (touch.phase == TouchPhase.Moved)
-            {
-                transform.Rotate(Vector3.up * touch.deltaPosition.x * SnakeTurnSpeed * Time.deltaTime);
-            }
-        }
-        float snakeDirection = Input.GetAxis("Horizontal");
-        transform.Rotate(Vector3.up * snakeDirection * SnakeTurnSpeed * Time.deltaTime);
-
-    }
-
-    void UpdateSnakePosition()
-    {
-        SnakeTailPosition.Insert(0, transform.position);
-
-        int index = 0;
-        foreach (var body in SnakeTail)
-        {
-            Vector3 point = SnakeTailPosition[Mathf.Clamp(index * TailSpawnGap, 0, SnakeTailPosition.Count - 1)];
-            Vector3 moveDirection = point - body.transform.position;
-            body.transform.position += moveDirection * TailFollowSpeed * Time.deltaTime;
-            body.transform.LookAt(point);
-
-            index++;
-        }
-    }
-
     private void AddSnake()
     {
         GameObject body = Instantiate(SnakeTailPrefab);
