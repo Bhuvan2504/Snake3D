@@ -77,7 +77,7 @@ public class MultiplayerManager : MonoBehaviourPunCallbacks
         isGameStart = false;
         isTimerStart= false;
         int P1Score = int.Parse(playerScore[0].text.Split(':').Last());
-        int P2Score = int.Parse(playerScore[0].text.Split(':').Last());
+        int P2Score = int.Parse(playerScore[1].text.Split(':').Last());
 
         if (P1Score > P2Score)
             timerText.text = "P1 Wins";
