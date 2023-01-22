@@ -1,17 +1,17 @@
-using Photon.Pun;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
-public class SingleplayerController : MonoBehaviourPunCallbacks
+public class SingleplayerController : PlayerManager
 {
-    public PlayerManager playerManager;
-    public GameObject SnakeTailPrefab;
-    int score;
-    private List<GameObject> SnakeTail = new List<GameObject>();
-    private List<Vector3> SnakeTailPosition = new List<Vector3>();
     SingleplayerManager singleplayerManager;
+
+    public GameObject SnakeTailPrefab;
+
+    List<GameObject> SnakeTail = new List<GameObject>();
+    List<Vector3> SnakeTailPosition = new List<Vector3>();
+
+    int score;
+
     private void Start()
     {
         singleplayerManager = SingleplayerManager.Instance;   
@@ -21,8 +21,8 @@ public class SingleplayerController : MonoBehaviourPunCallbacks
         if (!singleplayerManager.isGameStarted)
             return;
 
-        playerManager.SnakeHeadMovement();
-        playerManager.UpdateSnakePosition(SnakeTailPosition, SnakeTail);
+        SnakeHeadMovement();
+        UpdateSnakePosition(SnakeTailPosition, SnakeTail);
     }
     private void AddSnake()
     {

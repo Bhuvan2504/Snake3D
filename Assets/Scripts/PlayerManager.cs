@@ -1,15 +1,15 @@
-using System.Collections;
+using Photon.Pun;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerManager : MonoBehaviour
+public class PlayerManager : MonoBehaviourPunCallbacks
 {
     float SnakeMoveSpeed = 5;
-    float SnakeTurnSpeed = 180;
+    float SnakeTurnSpeed = 90;
     float TailFollowSpeed = 5;
     public int TailSpawnGap = 5;
     Touch touch;
-    public void SnakeHeadMovement()
+    protected void SnakeHeadMovement()
     {
         transform.position += transform.forward * SnakeMoveSpeed * Time.deltaTime;
 
@@ -26,7 +26,7 @@ public class PlayerManager : MonoBehaviour
 
     }
 
-    public void UpdateSnakePosition(List<Vector3> SnakeTailPosition, List<GameObject> SnakeTail)
+    protected void UpdateSnakePosition(List<Vector3> SnakeTailPosition, List<GameObject> SnakeTail)
     {
         SnakeTailPosition.Insert(0, transform.position);
 

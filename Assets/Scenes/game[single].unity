@@ -256,36 +256,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 11699273}
   m_CullTransparentMesh: 1
---- !u!1 &102719937
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 102719938}
-  m_Layer: 0
-  m_Name: SpawnPoint[1]
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &102719938
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 102719937}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: -16.63}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &153923187
 GameObject:
   m_ObjectHideFlags: 0
@@ -382,7 +352,7 @@ RectTransform:
   - {fileID: 950934497}
   - {fileID: 11699274}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -453,7 +423,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &276318717
 GameObject:
@@ -579,7 +549,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &685727881
 MonoBehaviour:
@@ -595,14 +565,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FoodPrefab: {fileID: 4591672843916412935, guid: 11e34e53119e9554490ccc1c43efa007, type: 3}
   PlayerPrefab: {fileID: 4591672843916412935, guid: f74c5d48fefa2984fb1f69bb3a29ac75, type: 3}
-  playerSpawn:
-  - {fileID: 102719938}
-  - {fileID: 1431363238}
+  playerSpawn: {fileID: 1431363238}
   foodSpawnArea: {x: 9, y: 0, z: 15}
   isGameStarted: 0
   ScoreTxt: {fileID: 2097358134}
-  isMulti: 0
-  playerCount: 0
   ReloadLevelButton: {fileID: 11699275}
 --- !u!1 &705507993
 GameObject:
@@ -1201,7 +1167,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!1 &1495165712
 GameObject:
@@ -1332,7 +1298,7 @@ Transform:
   - {fileID: 1808711548}
   - {fileID: 1557403540}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1557403536
 GameObject:

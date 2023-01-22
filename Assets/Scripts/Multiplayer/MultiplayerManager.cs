@@ -5,27 +5,34 @@ using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-public class NetworkManager : MonoBehaviourPunCallbacks
+public class MultiplayerManager : MonoBehaviourPunCallbacks
 {
-    public static NetworkManager Instance;
+    #region GameLogicVariables
+    public static MultiplayerManager Instance;
     public GameObject FoodPrefab;
     public Vector3 foodSpawnArea;
     public bool isGameStart = false;
-    public bool isTimerStart = false;
-    public bool isGameOver = false;
+    bool isTimerStart = false;
+    bool isGameOver = false;
+    #endregion
+
     public List<Transform> playerSpawn = new List<Transform>();
     public List<TextMeshProUGUI> playerScore = new List<TextMeshProUGUI>();
     int playerCount = 0;
-    float totalTime = 90;
-    int finalTime;
-    float waitTime = 5;
+
+    #region TimerVariables
     public TextMeshProUGUI timerText;
+    int finalTime;
+    float totalTime = 90;
+    float waitTime = 5;
+    private int foodSpawnNumber;
+    #endregion
     void Awake()
     {
         Instance= this;
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
-    private void Update()
+    void Update()
     {
         if(isGameOver)
             DecleareWinner();
@@ -95,10 +102,15 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     }
 
     [PunRPC]
-    public void SpawnFood(Vector3 position)
+    void SpawnFood(Vector3 position)
     {
+        foodSpawnNumber++;
         Vector3 foodPos = transform.position + position;
         GameObject food = Instantiate(FoodPrefab, foodPos, Quaternion.identity);
+
+        if (foodSpawnNumber % 2 != 0)
+            Destroy(food.GetComponent<FoodMovement>());
+
         food.name = "Food";
     }
 }

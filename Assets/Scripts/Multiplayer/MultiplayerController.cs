@@ -5,10 +5,12 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class MultiplayerController : MonoBehaviourPunCallbacks
+public class MultiplayerController : PlayerManager
 {
+    MultiplayerManager multiplayerManager;
+
     public GameObject SnakeTailPrefab;
-    public PlayerManager playerManager;
+
     int myScore;
     int score
     {
@@ -22,21 +24,23 @@ public class MultiplayerController : MonoBehaviourPunCallbacks
             }
         }
     }
+    
     List<GameObject> SnakeTail = new List<GameObject>();
     List<Vector3> SnakeTailPosition = new List<Vector3>();
+    
     public TextMeshProUGUI myScoreText;
-    NetworkManager networkManager;
-    private void Start()
+    
+     void Start()
     {
-        networkManager = NetworkManager.Instance;
+        multiplayerManager = MultiplayerManager.Instance;
     }
     void Update()
     {
-        if (!networkManager.isGameStart || !photonView.IsMine)
+        if (!multiplayerManager.isGameStart || !photonView.IsMine)
             return;
 
-        playerManager.SnakeHeadMovement();
-        playerManager.UpdateSnakePosition(SnakeTailPosition,SnakeTail);
+        SnakeHeadMovement();
+        UpdateSnakePosition(SnakeTailPosition,SnakeTail);
     }
 
     private void AddSnake()
@@ -53,7 +57,7 @@ public class MultiplayerController : MonoBehaviourPunCallbacks
             Destroy(other.gameObject);
             score++;
             AddSnake();
-            networkManager.SpawnFoodRPC();
+            multiplayerManager.SpawnFoodRPC();
 
         }
     }
@@ -62,6 +66,6 @@ public class MultiplayerController : MonoBehaviourPunCallbacks
     [PunRPC]
     void UpdateScore(int actornumber, int value)
     {
-        networkManager.playerScore[actornumber %2].text = "P"+actornumber+": "+ value.ToString();
+        multiplayerManager.playerScore[actornumber %2].text = "P"+actornumber+": "+ value.ToString();
     }
 }
